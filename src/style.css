@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #222;
+}
+
+h1 {
+  margin: 0 0 20px;
+  font-size: 28px;
+}
+
+.movies-table {
+  width: 100%;
+  max-width: 900px;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.movies-table th,
+.movies-table td {
+  padding: 12px 16px;
+  border: 1px solid #d7d7d7;
+  text-align: left;
+}
+
+.movies-table th {
+  background: #efefef;
+}
+
+.movies-table__header_active {
+  color: #b00020;
+}
+
+.movies-table__label {
+  margin-right: 6px;
+}
+
+.movies-table__arrow {
+  display: inline-block;
+  width: 14px;
+}

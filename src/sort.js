@@ -1,12 +1,12 @@
 export const sortSequence = [
-  { field: "id", direction: "asc" },
-  { field: "id", direction: "desc" },
-  { field: "title", direction: "asc" },
-  { field: "title", direction: "desc" },
-  { field: "year", direction: "asc" },
-  { field: "year", direction: "desc" },
-  { field: "imdb", direction: "asc" },
-  { field: "imdb", direction: "desc" },
+  { field: 'id', direction: 'asc' },
+  { field: 'id', direction: 'desc' },
+  { field: 'title', direction: 'asc' },
+  { field: 'title', direction: 'desc' },
+  { field: 'year', direction: 'asc' },
+  { field: 'year', direction: 'desc' },
+  { field: 'imdb', direction: 'asc' },
+  { field: 'imdb', direction: 'desc' },
 ];
 
 export function formatImdb(value) {
@@ -14,7 +14,7 @@ export function formatImdb(value) {
 }
 
 export function getComparableValue(row, field) {
-  if (field === "title") {
+  if (field === 'title') {
     return row.dataset[field].toLowerCase();
   }
 
@@ -27,7 +27,7 @@ export function compareRows(first, second, field, direction) {
 
   let result = 0;
 
-  if (field === "title") {
+  if (field === 'title') {
     if (firstValue > secondValue) {
       result = 1;
     }
@@ -39,9 +39,23 @@ export function compareRows(first, second, field, direction) {
     result = firstValue - secondValue;
   }
 
-  if (direction === "desc") {
+  if (direction === 'desc') {
     result *= -1;
   }
 
   return result;
+}
+
+export function getSortedRows(rows, field, direction) {
+  return [...rows].sort((a, b) => compareRows(a, b, field, direction));
+}
+
+export function syncRowsWithDomOrder(tbody, sortedRows) {
+  sortedRows.forEach((row, index) => {
+    const currentRow = tbody.children[index];
+
+    if (currentRow !== row) {
+      tbody.insertBefore(row, currentRow || null);
+    }
+  });
 }

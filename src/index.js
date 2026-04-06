@@ -1,6 +1,11 @@
 import './style.css';
 import { movies } from './data';
-import { compareRows, formatImdb, sortSequence } from './sort';
+import {
+  formatImdb,
+  getSortedRows,
+  sortSequence,
+  syncRowsWithDomOrder,
+} from './sort';
 
 function createHeaderCell(title, field) {
   const th = document.createElement('th');
@@ -89,10 +94,9 @@ function updateHeaders(table, field, direction) {
 
 function sortRows(tbody, field, direction) {
   const rows = Array.from(tbody.querySelectorAll('.movies-table__row'));
+  const sortedRows = getSortedRows(rows, field, direction);
 
-  rows.sort((a, b) => compareRows(a, b, field, direction));
-
-  tbody.replaceChildren(...rows);
+  syncRowsWithDomOrder(tbody, sortedRows);
 }
 
 function init() {
